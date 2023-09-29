@@ -22,6 +22,8 @@ TRAIN_BATCH_SIZE = CONFIG['TRAIN_BATCH_SIZE']
 TEST_BATCH_SIZE = CONFIG['TEST_BATCH_SIZE']
 LEARNING_RATE = CONFIG['LEARNING_RATE']
 NUM_EPOCHS = CONFIG['NUM_EPOCHS']
+NONE_NUMBER = CONFIG['NONE_NUMBER']
+MAX_LENGTH = CONFIG['MAX_LENGTH']
 
 #讀取資料
 train_data = pd_read_json(TRAIN_PATH)
@@ -42,7 +44,7 @@ tokenizer = establish_model.get_tokenizer()
 # model.to(device)
 #建立dataset
 train_dataset = Bc5cdrDataset(train_data, tokenizer)
-my_collate_funtion = lambda batch: collate_fn(batch, tokenizer)
+my_collate_funtion = lambda batch: collate_fn(batch, tokenizer, NONE_NUMBER, MAX_LENGTH)
 # 創建包裝函數，將 extra_variable 傳遞給 collate_fn
 train_loader = create_dataloader(train_dataset, TRAIN_BATCH_SIZE, shuffle = True, collate_fn = my_collate_funtion)
 

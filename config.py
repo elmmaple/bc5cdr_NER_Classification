@@ -13,6 +13,7 @@ CONFIG['TEST_BATCH_SIZE'] = 4
 CONFIG['LEARNING_RATE'] = 2e-5
 CONFIG['NUM_EPOCHS'] = 20
 CONFIG['NONE_NUMBER'] = -100
+CONFIG['MAX_LENGTH'] = 512
 
 def update_config(title, content):
     CONFIG[title] = content
