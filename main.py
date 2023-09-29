@@ -16,6 +16,7 @@ MODEL = CONFIG['MODEL']
 MODEL_NAME = CONFIG['MODEL_NAME']
 TRAIN_BATCH_SIZE = CONFIG['TRAIN_BATCH_SIZE']
 TEST_BATCH_SIZE = CONFIG['TEST_BATCH_SIZE']
+LEARNING_RATE = CONFIG['LEARNING_RATE']
 #讀取資料
 train_data = pd_read_json(TRAIN_PATH)
 test_data = pd_read_json(TEST_PATH)
@@ -42,3 +43,5 @@ train_loader = create_dataloader(train_dataset, TRAIN_BATCH_SIZE, shuffle = True
 # 進行評估
 test_dataset = Bc5cdrDataset(test_data, tokenizer)
 test_loader = create_dataloader(test_dataset,TEST_BATCH_SIZE, shuffle = False ,collate_fn = my_collate_funtion)
+
+optimizer = torch.optim.AdamW(model.parameters(), lr = LEARNING_RATE)

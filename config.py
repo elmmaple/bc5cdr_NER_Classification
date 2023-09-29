@@ -10,5 +10,6 @@ CONFIG['TOKENIZER'] = AutoTokenizer.from_pretrained(CONFIG['MODEL_NAME'])
 CONFIG['MODEL'] = AutoModelForTokenClassification.from_pretrained
 CONFIG['TRAIN_BATCH_SIZE'] = 16
 CONFIG['TEST_BATCH_SIZE'] = 4
+CONFIG['LEARNING_RATE'] = 2e-5
 def update_config(title, content):
     CONFIG[title] = content
