@@ -9,7 +9,6 @@ transformers = "*"
 pandas = "*"
 numpy = "*"
 tqdm = "*"
-scikit-learn = "*"
 seqeval = "*"
 
 [dev-packages]
