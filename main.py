@@ -4,6 +4,7 @@ from random_seed import update_seed_number
 from check_cuda import check_cuda
 from create_model import Create_Model
 from bc5cdr_dataset import Bc5cdrDataset
+import torch
 from collate_function import collate_fn
 TRAIN_PATH = CONFIG['TRAIN_PATH']
 TEST_PATH = CONFIG['TEST_PATH']
