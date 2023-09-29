@@ -7,6 +7,10 @@ from bc5cdr_dataset import Bc5cdrDataset
 from create_dataloader import create_dataloader
 import torch
 from collate_function import collate_fn
+from tqdm.auto import tqdm  # 引入tqdm庫
+from train import train
+from test import test
+
 TRAIN_PATH = CONFIG['TRAIN_PATH']
 TEST_PATH = CONFIG['TEST_PATH']
 MAPPING = CONFIG['MAPPING']
@@ -17,6 +21,8 @@ MODEL_NAME = CONFIG['MODEL_NAME']
 TRAIN_BATCH_SIZE = CONFIG['TRAIN_BATCH_SIZE']
 TEST_BATCH_SIZE = CONFIG['TEST_BATCH_SIZE']
 LEARNING_RATE = CONFIG['LEARNING_RATE']
+NUM_EPOCHS = CONFIG['NUM_EPOCHS']
+
 #讀取資料
 train_data = pd_read_json(TRAIN_PATH)
 test_data = pd_read_json(TEST_PATH)
@@ -45,3 +51,7 @@ test_dataset = Bc5cdrDataset(test_data, tokenizer)
 test_loader = create_dataloader(test_dataset,TEST_BATCH_SIZE, shuffle = False ,collate_fn = my_collate_funtion)
 
 optimizer = torch.optim.AdamW(model.parameters(), lr = LEARNING_RATE)
+
+for epoch in tqdm(range(NUM_EPOCHS)):
+    train_loader_tqdm = tqdm(train_loader, desc = f"Epoch {epoch + 1}")
+    train(model, optimizer, train_loader_tqdm)
