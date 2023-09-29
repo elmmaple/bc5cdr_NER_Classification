@@ -3,6 +3,7 @@ from load_data import pd_read_json, read_json
 from random_seed import update_seed_number
 from check_cuda import check_cuda
 from create_model import Create_Model
+from bc5cdr_dataset import Bc5cdrDataset
 TRAIN_PATH = CONFIG['TRAIN_PATH']
 TEST_PATH = CONFIG['TEST_PATH']
 MAPPING = CONFIG['MAPPING']
@@ -27,3 +28,7 @@ establish_model = Create_Model(TOKENIZER, MODEL(MODEL_NAME, num_labels = NUM_LAB
 model = establish_model.get_model()
 tokenizer = establish_model.get_tokenizer()
 # model.to(device)
+#建立dataset
+train_dataset = Bc5cdrDataset(train_data, tokenizer)
+# 進行評估
+test_dataset = Bc5cdrDataset(test_data, tokenizer)
