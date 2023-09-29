@@ -10,6 +10,9 @@ SEED_NUMBER = CONFIG['SEED_NUMBER']
 train_data = pd_read_json(TRAIN_PATH)
 test_data = pd_read_json(TEST_PATH)
 mapping = read_json(MAPPING)
+#更新CONFIG參數
+update_config('NUM_LABELS', len(mapping))
+NUM_LABELS = CONFIG['NUM_LABELS']
 #設定固定random_seed
 update_seed_number(SEED_NUMBER)
 #檢查cuda
