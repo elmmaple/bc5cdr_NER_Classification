@@ -4,6 +4,7 @@ from random_seed import update_seed_number
 from check_cuda import check_cuda
 from create_model import Create_Model
 from bc5cdr_dataset import Bc5cdrDataset
+from collate_function import collate_fn
 TRAIN_PATH = CONFIG['TRAIN_PATH']
 TEST_PATH = CONFIG['TEST_PATH']
 MAPPING = CONFIG['MAPPING']
@@ -30,5 +31,6 @@ tokenizer = establish_model.get_tokenizer()
 # model.to(device)
 #建立dataset
 train_dataset = Bc5cdrDataset(train_data, tokenizer)
+my_collate_funtion = lambda batch: collate_fn(batch, tokenizer)
 # 進行評估
 test_dataset = Bc5cdrDataset(test_data, tokenizer)
