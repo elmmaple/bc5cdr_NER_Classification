@@ -55,3 +55,11 @@ optimizer = torch.optim.AdamW(model.parameters(), lr = LEARNING_RATE)
 for epoch in tqdm(range(NUM_EPOCHS)):
     train_loader_tqdm = tqdm(train_loader, desc = f"Epoch {epoch + 1}")
     train(model, optimizer, train_loader_tqdm)
+    #模型切換到評估模式
+    model.eval()
+    correct = 0
+    total = 0
+    all_predictions = []
+    all_labels = []
+    test_loader_tqdm = tqdm(test_loader, desc = f"Evaluation{epoch + 1}")
+    test(model, test_loader_tqdm, CONFIG, correct, total, all_predictions, all_labels, mapping)
