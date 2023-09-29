@@ -17,3 +17,4 @@ NUM_LABELS = CONFIG['NUM_LABELS']
 update_seed_number(SEED_NUMBER)
 #檢查cuda
 check_cuda()
+device = torch.device("cuda:0" if torch.cuda.is_available() else 'cpu')
