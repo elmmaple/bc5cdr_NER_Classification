@@ -14,6 +14,7 @@
 - pandas
 - tqdm
 - seqeval
+- rich
 
 你可以使用以下指令安裝所需的Python函式庫：
 
