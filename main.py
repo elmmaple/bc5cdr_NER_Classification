@@ -10,6 +10,7 @@ from collate_function import collate_fn
 from tqdm.auto import tqdm  # 引入tqdm庫
 from train import train
 from test import test
+from lib.rich_lib import print
 
 TRAIN_PATH = CONFIG['TRAIN_PATH']
 TEST_PATH = CONFIG['TEST_PATH']
@@ -24,6 +25,8 @@ LEARNING_RATE = CONFIG['LEARNING_RATE']
 NUM_EPOCHS = CONFIG['NUM_EPOCHS']
 NONE_NUMBER = CONFIG['NONE_NUMBER']
 MAX_LENGTH = CONFIG['MAX_LENGTH']
+CUSTOM_THEME = CONFIG['CUSTOM_THEME']
+
 
 #讀取資料
 train_data = pd_read_json(TRAIN_PATH)

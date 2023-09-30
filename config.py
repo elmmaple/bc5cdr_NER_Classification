@@ -15,5 +15,9 @@ CONFIG['NUM_EPOCHS'] = 20
 CONFIG['NONE_NUMBER'] = -100
 CONFIG['MAX_LENGTH'] = 512
 
+CONFIG['CUSTOM_THEME'] = {
+        "good": 'green',
+        "bad": 'red'
+    }
 def update_config(title, content):
     CONFIG[title] = content

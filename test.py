@@ -1,5 +1,7 @@
 import torch
 from seqeval.metrics import classification_report
+from lib.rich_lib import print
+
 
 def test(model, tqdm, CONFIG, mapping):
     all_predictions = []
@@ -21,5 +23,5 @@ def test(model, tqdm, CONFIG, mapping):
             all_labels.extend(torch.tensor(new_labels).cpu().numpy())
         new_all_predictions = [mapping[str(num)] for num in all_predictions]
         new_all_labels = [mapping[str(num)] for num in all_labels]
-        print(classification_report([new_all_predictions], [new_all_labels]))
+        print(classification_report([new_all_predictions], [new_all_labels]), style = 'bold underline yellow on blue ')
     

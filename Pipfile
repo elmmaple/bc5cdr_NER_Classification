@@ -11,6 +11,7 @@ numpy = "*"
 tqdm = "*"
 seqeval = "*"
 scikit-learn = "*"
+rich = "*"
 
 [dev-packages]
 
