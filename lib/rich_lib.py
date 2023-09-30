@@ -15,8 +15,7 @@ def save_and_print(text, style):
     # console.log(text, log_locals = True)
     RESULT_HTML = PATH_CONFIG['RESULT_HTML']
     console.print(text, style = style)
-    # 打開 HTML 文件以追加内容
+    # 打開 HTML 文件追加内容
     console_output = console.export_html() 
     with open(RESULT_HTML + str(CURRENT_DATE_TIME) +'.html',"a", encoding="utf-8") as html_file:
-        # 将包装后的内容追加到HTML文件中
         html_file.write(console_output)

@@ -73,7 +73,6 @@ for epoch in tqdm(range(NUM_EPOCHS)):
 # add_style()
 content_to_append = '<style> .r1 {color: red} .r2 {color: green} </style>'
 with open(RESULT_HTML + str(CURRENT_DATE_TIME) +'.html', "a", encoding="utf-8") as html_file:
-    # 将包装后的内容追加到HTML文件中
     html_file.write(content_to_append)
 print('-'*100)
     

@@ -15,17 +15,16 @@ MODEL_CONFIG['MODEL'] = AutoModelForTokenClassification.from_pretrained
 MODEL_CONFIG['TRAIN_BATCH_SIZE'] = 16
 MODEL_CONFIG['TEST_BATCH_SIZE'] = 4
 MODEL_CONFIG['LEARNING_RATE'] = 2e-5
-MODEL_CONFIG['NUM_EPOCHS'] = 1
+MODEL_CONFIG['NUM_EPOCHS'] = 3
 MODEL_CONFIG['NONE_NUMBER'] = -100
 MODEL_CONFIG['MAX_LENGTH'] = 512
-
 
 #rich樣式
 RICH_CONFIG = {}
 RICH_CONFIG['CUSTOM_THEME'] = {
         "good": 'green',
         "bad": 'red'
-    }
+}
 RICH_CONFIG['THUMBS_UP'] = ':thumbs_up: ' 
 RICH_CONFIG['THUMBS_DOWN'] = ':thumbs_down: ' 
 RICH_CONFIG['DATE_TIME'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
