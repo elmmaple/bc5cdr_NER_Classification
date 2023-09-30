@@ -1,4 +1,4 @@
-from config import CONFIG, update_config
+from config import MODEL_CONFIG, PATH_CONFIG, RICH_CONFIG, update_config
 from load_data import pd_read_json, read_json
 from random_seed import update_seed_number
 from check_cuda import check_cuda
@@ -12,21 +12,22 @@ from train import train
 from test import test
 from lib.rich_lib import print
 
-TRAIN_PATH = CONFIG['TRAIN_PATH']
-TEST_PATH = CONFIG['TEST_PATH']
-MAPPING = CONFIG['MAPPING']
-SEED_NUMBER = CONFIG['SEED_NUMBER']
-TOKENIZER = CONFIG['TOKENIZER']
-MODEL = CONFIG['MODEL']
-MODEL_NAME = CONFIG['MODEL_NAME']
-TRAIN_BATCH_SIZE = CONFIG['TRAIN_BATCH_SIZE']
-TEST_BATCH_SIZE = CONFIG['TEST_BATCH_SIZE']
-LEARNING_RATE = CONFIG['LEARNING_RATE']
-NUM_EPOCHS = CONFIG['NUM_EPOCHS']
-NONE_NUMBER = CONFIG['NONE_NUMBER']
-MAX_LENGTH = CONFIG['MAX_LENGTH']
-CUSTOM_THEME = CONFIG['CUSTOM_THEME']
-THUMBS_UP = CONFIG['THUMBS_UP']
+TRAIN_PATH = PATH_CONFIG['TRAIN_PATH']
+TEST_PATH = PATH_CONFIG['TEST_PATH']
+MAPPING = PATH_CONFIG['MAPPING']
+SEED_NUMBER = MODEL_CONFIG['SEED_NUMBER']
+TOKENIZER = MODEL_CONFIG['TOKENIZER']
+MODEL = MODEL_CONFIG['MODEL']
+MODEL_NAME = MODEL_CONFIG['MODEL_NAME']
+TRAIN_BATCH_SIZE = MODEL_CONFIG['TRAIN_BATCH_SIZE']
+TEST_BATCH_SIZE = MODEL_CONFIG['TEST_BATCH_SIZE']
+LEARNING_RATE = MODEL_CONFIG['LEARNING_RATE']
+NUM_EPOCHS = MODEL_CONFIG['NUM_EPOCHS']
+NONE_NUMBER = MODEL_CONFIG['NONE_NUMBER']
+MAX_LENGTH = MODEL_CONFIG['MAX_LENGTH']
+
+CUSTOM_THEME = RICH_CONFIG['CUSTOM_THEME']
+THUMBS_UP = RICH_CONFIG['THUMBS_UP']
 
 print(THUMBS_UP + 'This is a text', style = 'bold underline red on black')
 
@@ -35,8 +36,8 @@ train_data = pd_read_json(TRAIN_PATH)
 test_data = pd_read_json(TEST_PATH)
 mapping = read_json(MAPPING)
 #更新CONFIG參數
-update_config('NUM_LABELS', len(mapping))
-NUM_LABELS = CONFIG['NUM_LABELS']
+update_config(MODEL_CONFIG, 'NUM_LABELS', len(mapping))
+NUM_LABELS = MODEL_CONFIG['NUM_LABELS']
 #設定固定random_seed
 update_seed_number(SEED_NUMBER)
 #檢查cuda
@@ -64,4 +65,4 @@ for epoch in tqdm(range(NUM_EPOCHS)):
     train(model, optimizer, train_loader_tqdm)
     #模型切換到評估模式
     test_loader_tqdm = tqdm(test_loader, desc = f"Evaluation{epoch + 1}")
-    test(model, test_loader_tqdm, CONFIG, mapping)
+    test(model, test_loader_tqdm, NUM_LABELS, NONE_NUMBER, mapping)

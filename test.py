@@ -3,11 +3,9 @@ from seqeval.metrics import classification_report
 from lib.rich_lib import print
 
 
-def test(model, tqdm, CONFIG, mapping):
+def test(model, tqdm, NUM_LABELS, NONE_NUMBER, mapping):
     all_predictions = []
     all_labels = []
-    NUM_LABELS = CONFIG['NUM_LABELS']
-    NONE_NUMBER = CONFIG['NONE_NUMBER']
     model.eval()
     # torch.no_grad 確保不會因為不必要的計算而增加計算和記憶體負擔，減少內存使用，提高效率
     with torch.no_grad():
