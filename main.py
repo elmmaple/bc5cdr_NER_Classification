@@ -10,7 +10,7 @@ from collate_function import collate_fn
 from tqdm.auto import tqdm  # 引入tqdm庫
 from train import train
 from test import test
-from lib.rich_lib import print
+from lib.rich_lib import save_and_print
 
 TRAIN_PATH = PATH_CONFIG['TRAIN_PATH']
 TEST_PATH = PATH_CONFIG['TEST_PATH']
@@ -29,7 +29,7 @@ MAX_LENGTH = MODEL_CONFIG['MAX_LENGTH']
 CUSTOM_THEME = RICH_CONFIG['CUSTOM_THEME']
 THUMBS_UP = RICH_CONFIG['THUMBS_UP']
 
-print(THUMBS_UP + 'This is a text', style = 'bold underline red on black')
+save_and_print(THUMBS_UP + 'This is a text', style = 'bold red on black')
 
 #讀取資料
 train_data = pd_read_json(TRAIN_PATH)

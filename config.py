@@ -4,6 +4,7 @@ PATH_CONFIG = {}
 PATH_CONFIG['TRAIN_PATH'] = 'data/train.json'
 PATH_CONFIG['TEST_PATH'] = 'data/test.json'
 PATH_CONFIG['MAPPING'] = 'data/mapping.json'
+PATH_CONFIG['RESULT_HTML'] = 'demo/result.html'
 
 MODEL_CONFIG = {}
 MODEL_CONFIG['SEED_NUMBER'] = 42
