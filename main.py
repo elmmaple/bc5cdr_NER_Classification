@@ -10,11 +10,13 @@ from collate_function import collate_fn
 from tqdm.auto import tqdm  # 引入tqdm庫
 from train import train
 from test import test
-from lib.rich_lib import save_and_print
+from lib.rich_lib import save_and_print, console
 
 TRAIN_PATH = PATH_CONFIG['TRAIN_PATH']
 TEST_PATH = PATH_CONFIG['TEST_PATH']
 MAPPING = PATH_CONFIG['MAPPING']
+RESULT_HTML = PATH_CONFIG['RESULT_HTML']
+
 SEED_NUMBER = MODEL_CONFIG['SEED_NUMBER']
 TOKENIZER = MODEL_CONFIG['TOKENIZER']
 MODEL = MODEL_CONFIG['MODEL']
@@ -26,11 +28,10 @@ NUM_EPOCHS = MODEL_CONFIG['NUM_EPOCHS']
 NONE_NUMBER = MODEL_CONFIG['NONE_NUMBER']
 MAX_LENGTH = MODEL_CONFIG['MAX_LENGTH']
 
+# 获取当前日期和时间
+CURRENT_DATE_TIME = RICH_CONFIG['DATE_TIME']
 CUSTOM_THEME = RICH_CONFIG['CUSTOM_THEME']
-THUMBS_UP = RICH_CONFIG['THUMBS_UP']
-
-save_and_print(THUMBS_UP + 'This is a text', style = 'bold red on black')
-
+THUMBS_UP = RICH_CONFIG['THUMBS_UP']    
 #讀取資料
 train_data = pd_read_json(TRAIN_PATH)
 test_data = pd_read_json(TEST_PATH)
@@ -59,10 +60,20 @@ test_dataset = Bc5cdrDataset(test_data, tokenizer)
 test_loader = create_dataloader(test_dataset,TEST_BATCH_SIZE, shuffle = False ,collate_fn = my_collate_funtion)
 
 optimizer = torch.optim.AdamW(model.parameters(), lr = LEARNING_RATE)
-
 for epoch in tqdm(range(NUM_EPOCHS)):
     train_loader_tqdm = tqdm(train_loader, desc = f"Epoch {epoch + 1}")
+    if epoch == 1 :
+        console(THUMBS_UP + '測試結果如下')
+        console(str(CURRENT_DATE_TIME))
+    save_and_print('Epoch: ' + str(epoch), 'bold red')
     train(model, optimizer, train_loader_tqdm)
     #模型切換到評估模式
     test_loader_tqdm = tqdm(test_loader, desc = f"Evaluation{epoch + 1}")
     test(model, test_loader_tqdm, NUM_LABELS, NONE_NUMBER, mapping)
+# add_style()
+content_to_append = '<style> .r1 {color: red} .r2 {color: green} </style>'
+with open(RESULT_HTML + str(CURRENT_DATE_TIME) +'.html', "a", encoding="utf-8") as html_file:
+    # 将包装后的内容追加到HTML文件中
+    html_file.write(content_to_append)
+print('-'*100)
+    
