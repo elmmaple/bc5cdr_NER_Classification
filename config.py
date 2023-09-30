@@ -15,9 +15,12 @@ CONFIG['NUM_EPOCHS'] = 20
 CONFIG['NONE_NUMBER'] = -100
 CONFIG['MAX_LENGTH'] = 512
 
+#rich樣式
 CONFIG['CUSTOM_THEME'] = {
         "good": 'green',
         "bad": 'red'
     }
+CONFIG['THUMBS_UP'] = ':thumbs_up: ' 
+
 def update_config(title, content):
     CONFIG[title] = content

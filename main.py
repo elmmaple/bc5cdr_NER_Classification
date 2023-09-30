@@ -26,7 +26,9 @@ NUM_EPOCHS = CONFIG['NUM_EPOCHS']
 NONE_NUMBER = CONFIG['NONE_NUMBER']
 MAX_LENGTH = CONFIG['MAX_LENGTH']
 CUSTOM_THEME = CONFIG['CUSTOM_THEME']
+THUMBS_UP = CONFIG['THUMBS_UP']
 
+print(THUMBS_UP + 'This is a text', style = 'bold underline red on black')
 
 #讀取資料
 train_data = pd_read_json(TRAIN_PATH)
